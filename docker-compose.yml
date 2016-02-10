@@ -1,23 +1,24 @@
 services:
 nginx:
-	build: nginx
-	links: 
-	 - php
-	 - dokuwiki
-	ports: "8085:80"
-	volumes_from: 
-	 - htdocs
+ build: nginx
+ links: 
+ - php
+ - dokuwiki
+ ports: 
+ - "8085:80"
+ volumes_from: 
+ - htdocs
 php: 
-	build: php
-	volumes_from:
-	 - htdocs
-	 - dokuwiki
+build: php
+ volumes_from:
+ - htdocs
+ - dokuwiki
 dokuwiki:
-	image: 
-	volumes: 
-	 - /var/www/dokuwiki
+ image: 
+ volumes: 
+ - /var/www/dokuwiki
 htdocs:
-	image: busybox
-	stdin_open: true
-	volumes: 
-	 - htdocs:/var/www/html
+ image: busybox
+ stdin_open: true
+ volumes: 
+ - htdocs:/var/www/html
